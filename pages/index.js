@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import db from 'db.json'
 import Widget from 'src/components/Widget'
@@ -19,6 +20,28 @@ export const QuizContainer = styled.div`
 `
 
 export default function Home() {
+  const router = useRouter()
+  const [name, setName] = useState('')
+
+  const handleSeachInputKeyPress = e => {
+    if (e.key === 'Enter') {
+      console.log('Enter key pressed! Search Value: ' + e.target.value)
+      setName(e.target.value)
+    }
+  }
+
+  let time = null
+
+  const handleSearchInputChange = e => {
+    const value = e.target.value
+    clearTimeout(time)
+
+    time = setTimeout(() => {
+      setName(value)
+      console.log('valor:', value)
+    }, 500)
+  }
+
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
@@ -28,7 +51,23 @@ export default function Home() {
             <h1>{db.title}</h1>
           </Widget.Header>
           <Widget.Content>
-            <p>{db.description}</p>
+            <form
+              onSubmit={info => {
+                info.preventDefault()
+                router.push(`/quiz?name:${name}`)
+              }}
+            >
+              <input
+                name="nickname"
+                type="text"
+                placeholder="Player digite seu nickname"
+                onChange={handleSearchInputChange}
+                onKeyPress={handleSeachInputKeyPress}
+              />
+              <button type="submit" disabled={name.length === 0}>
+                GO FIGHT
+              </button>
+            </form>
           </Widget.Content>
         </Widget>
 
