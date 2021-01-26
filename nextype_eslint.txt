@@ -1,0 +1,26 @@
+yarn add typescript @types/react @types/node -D
+yarn add eslint -D
+yarn add prettier eslint-plugin-prettier eslint-config-prettier -D
+
+
+
+
+arquivo eslinrc typescript
+
+
+        "plugin:@typescript-eslint",
+        "prettier/@typescript-eslint",
+
+
+
+ "rules": {
+        "prettier/prettier": "error" ,                    //isso sinaliza qualquer error do prettier
+        "space-before-function-paren": "off",
+	"react/prop-types": "off"
+}
+
+
+eslintignore
+
+node_modules
+.next
