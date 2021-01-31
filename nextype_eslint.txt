@@ -24,3 +24,10 @@ eslintignore
 
 node_modules
 .next
+
+next features
+
+Em pages ao criar um diretorio api e colocar um arquivo js dentro,
+o arquivo torna basicamente um servidor express com o detalhe de config do next que 
+lá nao é necessario se preocupar com toda config do servidor.
+(LAMBDA SERVERS) onde é necessario exportar uma funcao com requisicao e reposta
