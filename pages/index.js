@@ -1,23 +1,15 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
 import db from 'db.json'
-import Widget from 'src/components/Widget'
-import Footer from 'src/components/Footer'
-import GitHubCorner from 'src/components/GitHubCorner'
-import QuizLogo from 'src/components/QuizLogo'
-import QuizBackground from 'src/components/QuizBackground'
 
-export const QuizContainer = styled.div`
-  width: 100%;
-  max-width: 350px;
-  padding-top: 45px;
-  margin: auto 10%;
-  @media screen and (max-width: 500px) {
-    margin: auto;
-    padding: 15px;
-  }
-`
+import Widget from '@/components/Widget'
+import Footer from '@/components/Footer'
+import GitHubCorner from '@/components/GitHubCorner'
+import QuizLogo from '@/components/QuizLogo'
+import QuizBackground from '@/components/QuizBackground'
+import Input from '@/components/Input'
+import Button from '@/components/Button'
+import QuizContainer from '@/components/QuizContainer'
 
 export default function Home() {
   const router = useRouter()
@@ -39,7 +31,7 @@ export default function Home() {
     time = setTimeout(() => {
       setName(value)
       console.log('valor:', value)
-    }, 500)
+    }, 0)
   }
 
   return (
@@ -57,16 +49,17 @@ export default function Home() {
                 router.push(`/quiz?name:${name}`)
               }}
             >
-              <input
+              <Input
                 name="nickname"
                 type="text"
-                placeholder="Player digite seu nickname"
                 onChange={handleSearchInputChange}
+                placeholder="Player digite seu nickname"
                 onKeyPress={handleSeachInputKeyPress}
+                value={name}
               />
-              <button type="submit" disabled={name.length === 0}>
-                GO FIGHT
-              </button>
+              <Button type="submit" disabled={name.length === 0}>
+                {`GO FIGHT ${name}`}
+              </Button>
             </form>
           </Widget.Content>
         </Widget>
