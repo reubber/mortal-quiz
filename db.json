@@ -27,7 +27,9 @@
     }
   ],
   "external": [
-    ""
+    "https://aluraquiz-base.lucascardev.vercel.app/",
+    "https://aluraquiz-inclusao-git-main.ewerton-augusto.vercel.app/"
+    
   ],
   "theme": {
     "colors": {
